@@ -90,6 +90,7 @@ const SingupForm = () => {
                             />
                             <p className='error-msg'>{formError.name}</p>
                             <input
+                                type='password'
                                 className='input-custom-css' placeholder='Password'
                                 onChange={handleChange}
                                 name='password'

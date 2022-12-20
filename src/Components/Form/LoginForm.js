@@ -1,11 +1,11 @@
-import React , {useState} from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 const LoginForm = () => {
     const init = {
         name: '',
         password: '',
-        
+
     }
     let navigate = useNavigate()
     const [formData, setData] = useState(init)
@@ -23,14 +23,14 @@ const LoginForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormError(validate(formData))
-        
-        if (Object.keys(validate(formData)).length === 0  ) {
+
+        if (Object.keys(validate(formData)).length === 0) {
             var data = JSON.parse(localStorage.getItem('data'))
-            if (data?.name != formData?.name || data?.password != formData?.password){
+            if (data?.name != formData?.name || data?.password != formData?.password) {
                 setInvalid('invalid credentials')
             }
-            else{
-                navigate('/',{ replace: true })
+            else {
+                navigate('/', { replace: true })
             }
 
         }
@@ -39,9 +39,9 @@ const LoginForm = () => {
 
     const validate = (values) => {
         let error = {}
-       
+
         const regexPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-       
+
         if (!values.name) {
             error.name = "Enter Name"
         }
@@ -51,10 +51,10 @@ const LoginForm = () => {
         else if (!regexPass.test(values.password)) {
             error.password = "Please strengthen the password";
         }
-       
+
         return error
     }
-   
+
     return (
         <div className='signup__form'>
             <Container>
@@ -72,6 +72,7 @@ const LoginForm = () => {
                             />
                             <p className='error-msg'>{formError.name}</p>
                             <input
+                                type='password'
                                 className='input-custom-css' placeholder='Password'
                                 onChange={handleChange}
                                 name='password'
